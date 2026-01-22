@@ -1,0 +1,135 @@
+@use "./tokens" as *;
+
+/* ---------- Typography variables ---------- */
+@font-face {
+    font-family: "Cinedics Bold";
+    src: url("../public/fonts/Cinedics-Bold.woff");
+}
+
+@font-face {
+    font-family: "Cinedics Regular";
+    src: url("../public/fonts/Cinedics-Regular.woff");
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("../public/fonts/Inter-Variable.ttf");
+}
+
+// Font families
+$heading_font: "Cinedics Bold", serif;
+$subheading_font: "Cinedics Regular", serif;
+$paragraph_font: "Inter", sans-serif;
+$button_font: "Cinedics Regular", serif;
+
+// Font weights
+$font_light: 300;
+$font_regular: 400;
+$font_bold: 700;
+
+html,
+body {
+    font-weight: $font_light;
+    font-family: $paragraph_font;
+}
+
+h1,
+h2,
+h3 {
+    font-family: $heading_font;
+    font-weight: $font_bold;
+}
+
+h4,
+h5,
+h6 {
+    font-family: $subheading_font;
+    font-weight: $font_regular;
+}
+
+/* ---------- Typography styles ---------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $text_primary;
+    font-family: $subheading_font;
+    line-height: 1.1;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    font-size: $header_1;
+}
+
+h2 {
+    font-size: $header_2;
+}
+
+h3 {
+    font-size: $header_3;
+}
+
+h4 {
+    font-size: $header_4;
+}
+
+h5 {
+    font-size: $header_5;
+}
+
+h6 {
+    font-size: $header_6;
+}
+
+p {
+    color: $text_secondary;
+    font-size: $paragraph;
+    font-weight: $font_light;
+    font-family: $paragraph_font;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+}
+
+a,
+button {
+    color: $text_primary;
+    font-size: $paragraph;
+    width: fit-content;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+a {
+    font-family: $paragraph_font;
+    font-weight: $font_regular;
+    text-decoration: underline;
+}
+
+button {
+    font-family: $subheading_font;
+    text-transform: capitalize;
+    border: 1px solid $text_primary;
+    border-radius: calc($small * 0.25);
+    padding: calc($small * 0.25) $small;
+    letter-spacing: 1px;
+}
+
+.paragraph_small {
+    font-size: $paragraph_small;
+}
+
+.paragraph_tiny {
+    font-size: $paragraph_tiny;
+}
+
+.input_font {
+    font-family: $paragraph_font;
+    font-size: $paragraph_small;
+    font-weight: $font_light;
+    color: $text_secondary;
+}

@@ -1,0 +1,20 @@
+@use "./tokens" as *;
+
+section {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    position: absolute;
+    padding: $large;
+    gap: $small;
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+        padding: $medium;
+        gap: $small;
+    }
+
+    @media screen and (max-width: 767px) {
+        padding: $small;
+        gap: $small;
+    }
+}
