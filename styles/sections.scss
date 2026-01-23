@@ -6,14 +6,16 @@ section {
     grid-template-rows: auto;
     position: absolute;
     padding: $large;
-    gap: $small;
+    gap: $large;
 
     @media screen and (min-width: 768px) and (max-width: 1024px) {
+        grid-template-columns: repeat(8, 1fr);
         padding: $medium;
-        gap: $small;
+        gap: $medium;
     }
 
     @media screen and (max-width: 767px) {
+        grid-template-columns: repeat(4, 1fr);
         padding: $small;
         gap: $small;
     }

@@ -29,6 +29,7 @@ $font_bold: 700;
 
 html,
 body {
+    background-color: $background;
     font-weight: $font_light;
     font-family: $paragraph_font;
 }
@@ -54,7 +55,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: $text_primary;
+    color: $text_header;
     font-family: $subheading_font;
     line-height: 1.1;
     padding: 0;
@@ -86,7 +87,7 @@ h6 {
 }
 
 p {
-    color: $text_secondary;
+    color: $text_paragraph;
     font-size: $paragraph;
     font-weight: $font_light;
     font-family: $paragraph_font;
@@ -97,26 +98,38 @@ p {
 
 a,
 button {
-    color: $text_primary;
+    color: $text_paragraph;
     font-size: $paragraph;
     width: fit-content;
     cursor: pointer;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 a {
     font-family: $paragraph_font;
     font-weight: $font_regular;
-    text-decoration: underline;
+
+    &:hover {
+        color: $secondary;
+    }
+
+    &:active {
+        color: $primary;
+    }
 }
 
-button {
+button,
+.button {
+    background-color: $foreground;
     font-family: $subheading_font;
-    text-transform: capitalize;
-    border: 1px solid $text_primary;
     border-radius: calc($small * 0.25);
     padding: calc($small * 0.25) $small;
+    border: 1px solid $text_header;
+    text-transform: capitalize;
     letter-spacing: 1px;
+    box-shadow:
+        rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+        rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
 .paragraph_small {
@@ -131,5 +144,5 @@ button {
     font-family: $paragraph_font;
     font-size: $paragraph_small;
     font-weight: $font_light;
-    color: $text_secondary;
+    color: $text_paragraph;
 }

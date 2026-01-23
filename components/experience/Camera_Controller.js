@@ -21,17 +21,17 @@ export default function Camera_Controller() {
 
     // --- route → camera targets ---
     const CAMERA_TARGETS = {
-        "/": {
+        "/map": {
             position: [5, 8, 10],
             rotation: [-Math.PI / 4, 0.25, 0.1],
         },
 
-        "/projects": {
+        "/systems": {
             position: [0, 8, 0.25],
             rotation: [-Math.PI / 2, 0, 0],
         },
 
-        "/projects/ezinvoices": {
+        "/module/ezinvoices": {
             position: [-3.5, 1.5, -1.5],
             rotation: [-Math.PI / 4, Math.PI / 12, Math.PI / 12],
         },

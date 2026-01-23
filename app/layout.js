@@ -1,7 +1,10 @@
 import "./globals.css"
 import "./globals.scss"
+import Logo from "@/components/layout/Logo"
 import Lenis_Provider from "@/providers/Lenis_Provider"
+import Sidebar_Nav from "@/components/layout/Sidebar_Nav"
 import Experience_Provider from "@/providers/Experience_Provider"
+import Corner_Sentence from "@/components/layout/Corner_Sentence"
 
 export const metadata = {
     title: "Create Next App",
@@ -13,6 +16,9 @@ export default function RootLayout({ children }) {
         <html lang="en" suppressHydrationWarning>
             <body suppressHydrationWarning>
                 <Lenis_Provider />
+                <Logo />
+                <Sidebar_Nav />
+                <Corner_Sentence />
                 <Experience_Provider>{children}</Experience_Provider>
             </body>
         </html>
