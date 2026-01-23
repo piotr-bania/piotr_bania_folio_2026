@@ -1,34 +1,46 @@
+import { getSystemBySlug } from "@/lib/systems"
 import Card_Body from "@/components/card/Card_Body"
 import Card_Header from "@/components/card/Card_Header"
 import Card_Section from "@/components/card/Card_Section"
 import Card_Container from "@/components/card/Card_Container"
-import Card_Navigation from "@/components/card/Card_Navigation"
 
-export default function SystemCard({ system, level }) {
+export default async function Level_Page({ params }) {
+    const { slug, level } = await params
+    const system = getSystemBySlug(slug)
+
+    if (!system) return null
+
     const content = system[level]
+    if (!content) return null
 
     return (
-        <Card_Container>
-            <Card_Header title={content.title} subtitle={system.title} />
+        <main className="h-[100svh]">
+            <Card_Container>
+                <Card_Header title={content.title} subtitle={system.title} />
 
-            {content.description && (
-                <Card_Body>{content.description}</Card_Body>
-            )}
+                {content.description && (
+                    <Card_Body>
+                        <p>{content.description}</p>
+                    </Card_Body>
+                )}
+                {content.highlights && (
+                    <Card_Section
+                        title="Highlights"
+                        items={content.highlights}
+                    />
+                )}
 
-            {content.points && (
-                <Card_Section title="Key points" items={content.points} />
-            )}
+                {content.components && (
+                    <Card_Section
+                        title="Components"
+                        items={content.components}
+                    />
+                )}
 
-            {content.items && (
-                <Card_Section title="Evidence" items={content.items} />
-            )}
+                {content.points && <Card_Section items={content.points} />}
 
-            <Card_Navigation
-                prevLabel="Previous"
-                nextLabel="Next"
-                onPrev={null}
-                onNext={null}
-            />
-        </Card_Container>
+                {content.items && <Card_Section items={content.items} />}
+            </Card_Container>
+        </main>
     )
 }
