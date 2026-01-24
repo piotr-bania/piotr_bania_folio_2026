@@ -5,13 +5,18 @@ export default function Systems_Page() {
                 <h1 className="col-start-1 col-end-4 md:col-start-1 md:col-end-6 lg:col-start-1 lg:col-end-7">
                     Systems in production
                 </h1>
-
-                <p className="col-start-1 col-end-5 md:col-start-1 md:col-end-7 lg:col-start-1 lg:col-end-8">
-                    This is a structured overview of the systems I’ve designed,
-                    built, and currently operate. They are grouped by purpose:
-                    production, operational, and exploratory - reflecting how
-                    real systems evolve over time.
-                </p>
+                <div className="col-start-1 col-end-5 md:col-start-1 md:col-end-7 lg:col-start-1 lg:col-end-8 flex flex-col gap-4">
+                    <h6>
+                        A structured view of systems I’ve designed, shipped, and
+                        continue to operate.
+                    </h6>
+                    <p>
+                        These are production-grade platforms: SaaS products,
+                        compliance tooling, internal operations, and client
+                        websites under active maintenance. Each system exposes
+                        architecture, key decisions, and real-world evidence.
+                    </p>
+                </div>
             </section>
         </main>
     )

@@ -1,5 +1,8 @@
 import { getSystemBySlug } from "@/lib/systems"
-import { redirect } from "next/navigation"
+import Card_Body from "@/components/card/Card_Body"
+import Card_Header from "@/components/card/Card_Header"
+import Card_Section from "@/components/card/Card_Section"
+import Card_Container from "@/components/card/Card_Container"
 
 export default async function Module_Page({ params }) {
     const { slug } = await params
@@ -7,5 +10,51 @@ export default async function Module_Page({ params }) {
 
     if (!system) return null // or notFound()
 
-    redirect(`/module/${slug}/summary`)
+    const content = system.root
+    if (!content) return null
+
+    return (
+        <main className="h-[100svh]">
+            <Card_Container>
+                <Card_Header title={content.title} />
+
+                {content.description && (
+                    <Card_Body>
+                        <p>{content.description}</p>
+                    </Card_Body>
+                )}
+                {content.responsibilities && (
+                    <Card_Section
+                        title="Responsibilities"
+                        items={content.responsibilities}
+                    />
+                )}
+
+                {content.status && (
+                    <Card_Section
+                        title={content.status.state}
+                        items={content.status.notes}
+                    />
+                )}
+
+                {content.highlights && (
+                    <Card_Section
+                        title="Highlights"
+                        items={content.highlights}
+                    />
+                )}
+
+                {content.components && (
+                    <Card_Section
+                        title="Components"
+                        items={content.components}
+                    />
+                )}
+
+                {content.points && <Card_Section items={content.points} />}
+
+                {content.items && <Card_Section items={content.items} />}
+            </Card_Container>
+        </main>
+    )
 }

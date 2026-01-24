@@ -3,6 +3,7 @@ import Sidebar_Item from "@/components/layout/Sidebar_Item"
 export default function Sidebar_Group({
     group,
     pathname,
+    rootModules,
     onHoverItem,
     onLeaveItem,
     onNavigate,
@@ -21,6 +22,7 @@ export default function Sidebar_Group({
                         key={item.id}
                         item={item}
                         active={pathname === item.route}
+                        isRootModule={rootModules?.includes(item.id)}
                         onHoverItem={onHoverItem}
                         onLeaveItem={onLeaveItem}
                         onNavigate={onNavigate}

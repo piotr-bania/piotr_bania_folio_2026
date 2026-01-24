@@ -5,7 +5,7 @@ export default function Card_Navigation({
     onNext,
 }) {
     return (
-        <nav className="flex justify-between pt-2 border-t border-black/10 text-sm">
+        <nav className="flex justify-between pt-2 border-t border-black/10 text-sm shrink-0">
             <button
                 onClick={onPrev}
                 disabled={!onPrev}

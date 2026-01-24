@@ -5,6 +5,7 @@ import Link from "next/link"
 export default function Sidebar_Item({
     item,
     active,
+    isRootModule,
     onHoverItem,
     onLeaveItem,
     onNavigate,
@@ -22,7 +23,7 @@ export default function Sidebar_Item({
         >
             {/* Label */}
             <span
-                className={`paragraph leading-normal md:leading-snug lg:leading-tight transition ${active ? "underline text-[var(--color-primary)]" : ""}`}
+                className={`paragraph leading-normal md:leading-snug lg:leading-tight transition ${isRootModule ? "underline" : ""} ${active ? "text-[var(--color-primary)]" : ""}`}
             >
                 {item.label}
             </span>

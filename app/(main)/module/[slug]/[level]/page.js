@@ -16,7 +16,7 @@ export default async function Level_Page({ params }) {
     return (
         <main className="h-[100svh]">
             <Card_Container>
-                <Card_Header title={content.title} subtitle={system.title} />
+                <Card_Header title={content.title} />
 
                 {content.description && (
                     <Card_Body>

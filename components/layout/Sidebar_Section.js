@@ -10,6 +10,7 @@ export default function Sidebar_Section({
 }) {
     const isModule = context === "module"
 
+    const rootModules = []
     const adaptedGroup = {
         ...group,
         items: group.items.flatMap((item) => {
@@ -17,6 +18,8 @@ export default function Sidebar_Section({
 
             if (!isModule) return [item]
             if (!isActiveProject) return [item]
+
+            rootModules.push(item.id)
 
             const levelItems = Object.values(item.levels).map((lvl) => ({
                 id: `${item.id}-${lvl.id}`,
@@ -34,6 +37,7 @@ export default function Sidebar_Section({
             <Sidebar_Group
                 group={adaptedGroup}
                 pathname={pathname}
+                rootModules={rootModules}
                 onHoverItem={onHoverItem}
                 onLeaveItem={onLeaveItem}
                 onNavigate={onNavigate}

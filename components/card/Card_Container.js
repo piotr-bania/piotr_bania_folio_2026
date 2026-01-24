@@ -1,6 +1,6 @@
 export default function Card_Container({ children }) {
     return (
-        <aside className="absolute bottom-8 left-8 w-[360px] bg-white/90 backdrop-blur border border-black/10 rounded-lg shadow-sm p-4 space-y-4 z-50">
+        <aside className="absolute left-[var(--space-small)] bottom-16 md:left-[var(--space-medium)] md:bottom-[var(--space-medium)] lg:left-[var(--space-large)] lg:bottom-[var(--space-large)] max-w-xs md:max-w-md lg:max-w-xl max-h-[calc(100vh-4rem)] bg-white border border-[#16151950] rounded-sm shadow-lg z-50 p-[var(--space-small)]">
             {children}
         </aside>
     )
