@@ -18,28 +18,27 @@ export default async function Level_Page({ params }) {
             <Card_Container>
                 <Card_Header title={content.title} />
 
-                {content.description && (
-                    <Card_Body>
-                        <p>{content.description}</p>
-                    </Card_Body>
-                )}
-                {content.highlights && (
-                    <Card_Section
-                        title="Highlights"
-                        items={content.highlights}
-                    />
-                )}
+                <Card_Body>
+                    {content.description && <>{content.description}</>}
 
-                {content.components && (
-                    <Card_Section
-                        title="Components"
-                        items={content.components}
-                    />
-                )}
+                    {content.highlights && (
+                        <Card_Section
+                            title="Highlights"
+                            items={content.highlights}
+                        />
+                    )}
 
-                {content.points && <Card_Section items={content.points} />}
+                    {content.components && (
+                        <Card_Section
+                            title="Components"
+                            items={content.components}
+                        />
+                    )}
 
-                {content.items && <Card_Section items={content.items} />}
+                    {content.points && <Card_Section items={content.points} />}
+
+                    {content.items && <Card_Section items={content.items} />}
+                </Card_Body>
             </Card_Container>
         </main>
     )
