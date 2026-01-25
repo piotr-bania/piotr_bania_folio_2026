@@ -2,7 +2,7 @@ import { PiMinusDuotone } from "react-icons/pi"
 
 export default function Card_Section({ title, items }) {
     return (
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 mb-4">
             {title && <h6>{title}</h6>}
             {items.map((item) => (
                 <div key={item} className="flex items-center gap-2">

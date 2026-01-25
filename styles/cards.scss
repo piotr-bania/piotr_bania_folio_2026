@@ -1,0 +1,43 @@
+@use "./tokens" as *;
+
+.card_container {
+    position: absolute;
+    left: $large;
+    bottom: calc($large * 1);
+    min-width: 640px;
+    max-width: 40vw;
+    max-height: 75svh;
+    background-color: $foreground;
+    border: 1px solid #4a455350;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    padding: calc($large * 0.25);
+    overflow-y: auto;
+    z-index: 50;
+
+    .inner_border {
+        border: 1px dashed #4a455350;
+        border-radius: 6px;
+        height: 100%;
+
+        .inner_padding {
+            padding: calc($small * 0.5);
+        }
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+        left: medium;
+        bottom: $medium;
+        min-width: 470px;
+        max-width: 60vw;
+        max-height: 65svh;
+        padding: calc($medium * 0.25);
+    }
+
+    @media screen and (max-width: 767px) {
+        left: $small;
+        bottom: calc($small * 3.5);
+        min-width: calc(100vw - $small * 3.5);
+        max-height: 50svh;
+        padding: calc($small * 0.25);
+    }
+}

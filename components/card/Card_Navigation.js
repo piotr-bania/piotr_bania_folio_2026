@@ -1,3 +1,5 @@
+import { PiArrowLeftDuotone, PiArrowRightDuotone } from "react-icons/pi"
+
 export default function Card_Navigation({
     prevLabel,
     nextLabel,
@@ -5,22 +7,24 @@ export default function Card_Navigation({
     onNext,
 }) {
     return (
-        <nav className="flex justify-between pt-2 border-t border-black/10 text-sm shrink-0">
-            <button
-                onClick={onPrev}
-                disabled={!onPrev}
-                className="text-black/60 hover:text-black disabled:opacity-30"
-            >
-                ← {prevLabel}
-            </button>
+        <div className="flex justify-between items-center mx-4 my-2">
+            <>
+                <PiArrowLeftDuotone
+                    onClick={onPrev}
+                    disabled={!onPrev}
+                    size="32"
+                />{" "}
+                {prevLabel}
+            </>
 
-            <button
-                onClick={onNext}
-                disabled={!onNext}
-                className="text-black/60 hover:text-black disabled:opacity-30"
-            >
-                {nextLabel} →
-            </button>
-        </nav>
+            <>
+                {nextLabel}{" "}
+                <PiArrowRightDuotone
+                    onClick={onNext}
+                    disabled={!onNext}
+                    size="32"
+                />
+            </>
+        </div>
     )
 }
