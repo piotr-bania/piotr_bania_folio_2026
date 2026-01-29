@@ -9,9 +9,10 @@ import Camera_Controller from "@/components/experience/Camera_Controller"
 export default function Main_Scene() {
     return (
         <div className="fixed inset-0 z-0 pointers-events-none">
-            <Canvas dpr={[1, 1.5]} gl={{ antialias: true }}>
+            <Canvas dpr={[1, 1.5]}>
+                <fog attach="fog" args={["#f0eff1", 5, 150]} />
                 <Suspense fallback={null}>
-                    <Environment preset="studio" />
+                    <Environment files="/env/syferfontein_18d_clear_puresky_1k.hdr" />
                     <Camera_Controller />
                     <Main_Model />
                 </Suspense>
