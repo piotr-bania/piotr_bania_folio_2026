@@ -2,9 +2,10 @@
 
 import { useEffect } from "react"
 import { usePathname } from "next/navigation"
-import { PerspectiveCamera } from "@react-three/drei"
 import { useMotionValue, animate } from "motion/react"
 import { useThree, useFrame } from "@react-three/fiber"
+
+export const deg = (d) => (d * Math.PI) / 180
 
 export default function Camera_Controller() {
     const pathname = usePathname()
@@ -22,28 +23,28 @@ export default function Camera_Controller() {
     // --- route → camera targets ---
     const CAMERA_TARGETS = {
         "/map": {
-            position: [5, 8, 10],
-            rotation: [-Math.PI / 4, 0.25, 0.1],
+            position: [-3, 7, 8],
+            rotation: [-deg(45), -deg(15), -deg(10)],
         },
 
         "/systems": {
-            position: [0, 8, 0.25],
-            rotation: [-Math.PI / 2, 0, 0],
+            position: [0, 25, 2],
+            rotation: [-deg(90), 0, 0],
         },
 
         "/module/ezinvoices": {
-            position: [-3.5, 1.5, -1.5],
-            rotation: [-Math.PI / 4, Math.PI / 12, Math.PI / 12],
+            position: [10, 2, -20],
+            rotation: [deg(15), deg(200), deg(15)],
         },
 
         "/contact": {
             position: [-1.1, 1.5, 3.6],
-            rotation: [-0.45, -0.22, 0],
+            rotation: [-deg(24), -deg(13), 0],
         },
 
         "/about": {
             position: [1.2, 1.45, 3.8],
-            rotation: [-0.42, 0.25, 0],
+            rotation: [-deg(24), deg(15), 0],
         },
     }
 
