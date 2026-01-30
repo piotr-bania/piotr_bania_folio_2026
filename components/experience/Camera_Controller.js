@@ -33,8 +33,8 @@ export default function Camera_Controller() {
         },
 
         "/module/ezinvoices": {
-            position: [10, 2, -20],
-            rotation: [deg(15), deg(200), deg(15)],
+            position: [-13, 5, -4],
+            rotation: [-deg(35), deg(25), deg(25)],
         },
 
         "/contact": {

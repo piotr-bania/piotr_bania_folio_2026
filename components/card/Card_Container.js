@@ -11,7 +11,7 @@ export default function Card_Container({ children }) {
         >
             <div className="inner_border">
                 <div className="inner_padding">{children}</div>
-                <Card_Navigation />
+                {/* <Card_Navigation /> */}
             </div>
         </div>
     )
