@@ -12,7 +12,7 @@ export default function Main_Scene() {
             <Canvas dpr={[1, 1.5]}>
                 <fog attach="fog" args={["#f0eff1", 5, 150]} />
                 <Suspense fallback={null}>
-                    <Environment files="/env/evening_road_01_puresky_1k.hdr" />
+                    <Environment files="/env/cyclorama_hard_light_1k.hdr" />
                     <Camera_Controller />
                     <Main_Model />
                 </Suspense>
