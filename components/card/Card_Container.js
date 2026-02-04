@@ -1,5 +1,3 @@
-import Card_Navigation from "./Card_Navigation"
-
 export default function Card_Container({ children }) {
     return (
         <div

@@ -33,8 +33,13 @@ export default function Camera_Controller() {
         },
 
         "/module/ezinvoices": {
-            position: [-13, 5, -4],
+            position: [-13, 7, -3],
             rotation: [-deg(35), deg(25), deg(25)],
+        },
+
+        "/module/tsunami": {
+            position: [-10, 3, 14],
+            rotation: [deg(5), deg(40), deg(0)],
         },
 
         "/contact": {
