@@ -23,12 +23,12 @@ export default function Camera_Controller() {
     // --- route → camera targets ---
     const CAMERA_TARGETS = {
         "/map": {
-            position: [-3, 7, 8],
+            position: [-3, 5, 8],
             rotation: [-deg(45), -deg(15), -deg(10)],
         },
 
         "/systems": {
-            position: [0, 25, 2],
+            position: [0, 30, 1],
             rotation: [-deg(90), 0, 0],
         },
 
@@ -38,8 +38,13 @@ export default function Camera_Controller() {
         },
 
         "/module/tsunami": {
-            position: [-10, 3, 14],
-            rotation: [deg(5), deg(40), deg(0)],
+            position: [-15, 3, 20],
+            rotation: [deg(0), deg(60), deg(0)],
+        },
+
+        "/module/yama-momo": {
+            position: [-11, 3, 18],
+            rotation: [deg(0), deg(15), deg(0)],
         },
 
         "/contact": {
