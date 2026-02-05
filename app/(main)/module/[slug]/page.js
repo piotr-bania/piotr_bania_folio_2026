@@ -1,4 +1,5 @@
 import { getSystemBySlug } from "@/lib/systems"
+import Paragraph from "@/components/text/Paragraph"
 import Card_Body from "@/components/card/Card_Body"
 import Card_Header from "@/components/card/Card_Header"
 import Card_Section from "@/components/card/Card_Section"
@@ -20,7 +21,10 @@ export default async function Module_Page({ params }) {
 
                 {content.description && (
                     <Card_Body>
-                        <p>{content.description}</p>
+                        <Paragraph
+                            className="paragraph_small"
+                            text={content.description}
+                        />
                     </Card_Body>
                 )}
                 {content.responsibilities && (

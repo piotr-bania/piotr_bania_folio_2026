@@ -3,6 +3,7 @@ import Card_Body from "@/components/card/Card_Body"
 import Card_Header from "@/components/card/Card_Header"
 import Card_Section from "@/components/card/Card_Section"
 import Card_Container from "@/components/card/Card_Container"
+import Paragraph from "@/components/text/Paragraph"
 
 export default async function Level_Page({ params }) {
     const { slug, level } = await params
@@ -19,7 +20,12 @@ export default async function Level_Page({ params }) {
                 <Card_Header title={content.title} />
 
                 <Card_Body>
-                    {content.description && <>{content.description}</>}
+                    {content.description && (
+                        <Paragraph
+                            className="paragraph_small"
+                            text={content.description}
+                        />
+                    )}
 
                     {content.highlights && (
                         <Card_Section
