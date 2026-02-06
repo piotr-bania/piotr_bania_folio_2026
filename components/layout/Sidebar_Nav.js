@@ -1,8 +1,15 @@
 "use client"
 
 import Link from "next/link"
+import { motion as m } from "motion/react"
 import { SIDEBAR_NAV } from "@/lib/sidebar_nav"
 import { usePathname, useRouter } from "next/navigation"
+import {
+    label_variant,
+    link_variant,
+    list_container_variant,
+    nav_container_variant,
+} from "@/animations/Text_Variants"
 import Sidebar_Section from "@/components/layout/Sidebar_Section"
 import Sidebar_Back_Link from "@/components/layout/Sidebar_Back_Link"
 
@@ -32,30 +39,48 @@ function getActiveSystem(pathname) {
 export default function Sidebar_Nav({ onHoverItem, onLeaveItem }) {
     const pathname = usePathname()
     const router = useRouter()
-    const context = getContext(pathname)
-    const activeSystem = context === "module" ? getActiveSystem(pathname) : null
+    const resolvedPath = pathname || ""
+    const context = getContext(resolvedPath)
+    const isModuleRoute = resolvedPath.startsWith("/module")
+    const activeSystem =
+        context === "module" ? getActiveSystem(resolvedPath) : null
+
+    const globalActions = SIDEBAR_NAV.globalActions.filter((action) => {
+        if (action.id === "to_systems") return Boolean(isModuleRoute)
+        return action.showOn.includes(context)
+    })
 
     return (
         <nav className="fixed right-[var(--space-small)] top-[var(--space-small)] md:right-[var(--space-medium)] md:top-[var(--space-medium)] lg:right-[var(--space-large)] lg:top-[var(--space-large)] z-50 space-y-6">
             {/* MAP */}
             {context === "map" && (
-                <div className="flex flex-col items-end">
-                    <p className="paragraph_tiny w-32 text-right opacity-60">
+                <m.div
+                    variants={list_container_variant}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className="flex flex-col items-end"
+                >
+                    <m.p
+                        variants={label_variant}
+                        className="paragraph_tiny w-32 text-right opacity-60"
+                    >
                         {SIDEBAR_NAV.homepage.label}
-                    </p>
+                    </m.p>
 
-                    <ul className="flex flex-col items-end mt-1">
+                    <m.ul className="flex flex-col items-end mt-1">
                         {SIDEBAR_NAV.homepage.items.map((item) => (
-                            <Link
-                                key={item.id}
-                                href={item.route}
-                                className="paragraph hover:opacity-80 transition text-right"
-                            >
-                                {item.label}
-                            </Link>
+                            <m.li key={item.id} variants={link_variant}>
+                                <Link
+                                    href={item.route}
+                                    className="paragraph hover:opacity-80 transition text-right"
+                                >
+                                    {item.label}
+                                </Link>
+                            </m.li>
                         ))}
-                    </ul>
-                </div>
+                    </m.ul>
+                </m.div>
             )}
 
             {/* SYSTEMS OVERVIEW */}
@@ -65,7 +90,7 @@ export default function Sidebar_Nav({ onHoverItem, onLeaveItem }) {
                         <Sidebar_Section
                             key={group.id}
                             group={group}
-                            pathname={pathname}
+                            pathname={resolvedPath}
                             context="systems"
                             onHoverItem={onHoverItem}
                             onLeaveItem={onLeaveItem}
@@ -82,7 +107,7 @@ export default function Sidebar_Nav({ onHoverItem, onLeaveItem }) {
                         ...activeSystem.group,
                         items: [activeSystem.item],
                     }}
-                    pathname={pathname}
+                    pathname={resolvedPath}
                     context="module"
                     onHoverItem={onHoverItem}
                     onLeaveItem={onLeaveItem}
@@ -91,26 +116,32 @@ export default function Sidebar_Nav({ onHoverItem, onLeaveItem }) {
             )}
 
             {/* GLOBAL NAVIGATION */}
-            {SIDEBAR_NAV.globalActions.some((a) =>
-                a.showOn.includes(context)
-            ) && (
-                <div className="flex flex-col items-end mt-4">
-                    <p className="paragraph_tiny w-32 text-right opacity-60">
+            {globalActions.length > 0 && (
+                <m.div
+                    key={resolvedPath}
+                    variants={nav_container_variant}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className="flex flex-col items-end mt-4"
+                >
+                    <m.p
+                        variants={label_variant}
+                        className="paragraph_tiny w-32 text-right opacity-60"
+                    >
                         Navigation
-                    </p>
+                    </m.p>
 
                     <div className="flex flex-col items-end leading-normal md:leading-snug lg:leading-tight mt-1">
-                        {SIDEBAR_NAV.globalActions
-                            .filter((a) => a.showOn.includes(context))
-                            .map((action) => (
-                                <Sidebar_Back_Link
-                                    key={action.id}
-                                    to={action.route}
-                                    label={action.label}
-                                />
-                            ))}
+                        {globalActions.map((action) => (
+                            <Sidebar_Back_Link
+                                key={action.id}
+                                to={action.route}
+                                label={action.label}
+                            />
+                        ))}
                     </div>
-                </div>
+                </m.div>
             )}
         </nav>
     )

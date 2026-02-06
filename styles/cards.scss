@@ -8,7 +8,7 @@
     max-width: 40vw;
     max-height: 75svh;
     // glassmorphism effect
-    background-color: rgba(255, 255, 255, 0.35);
+    background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
     border: 1px solid #4a455350;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
@@ -17,8 +17,8 @@
     z-index: 50;
 
     // equally distributed grid of dots in the background
-    background-image: radial-gradient(#4a455325 1px, transparent 1px);
-    background-size: $small $small;
+    // background-image: radial-gradient(#4a455325 1px, transparent 1px);
+    // background-size: $small $small;
 
     .inner_border {
         border: 1px dashed #4a455350;
