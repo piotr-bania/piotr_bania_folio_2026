@@ -1,23 +1,39 @@
 "use client"
 
-import { Suspense } from "react"
+import { motion as m } from "motion/react"
 import { Canvas } from "@react-three/fiber"
-import { Environment } from "@react-three/drei"
-import Main_Model from "@/components/experience/Main_Model"
+import { Suspense, useEffect } from "react"
+import { useIntro } from "@/providers/Intro_Provider"
+import { canvasVariants } from "@/animations/Canvas_Variant"
 import Camera_Controller from "@/components/experience/Camera_Controller"
+import Main_Model from "@/components/experience/Main_Model"
 
 export default function Main_Scene() {
+    const { introState, setCanvasReady } = useIntro()
+    const isReady = introState === "done"
+
+    useEffect(() => {
+        if (!isReady) setCanvasReady(false)
+    }, [isReady, setCanvasReady])
+
     return (
-        <div className="fixed inset-0 z-0 pointers-events-none">
+        <m.div
+            className="fixed inset-0 z-0 pointers-events-none"
+            initial="hidden"
+            animate={isReady ? "visible" : "hidden"}
+            variants={canvasVariants}
+            onAnimationComplete={() => {
+                if (isReady) setCanvasReady(true)
+            }}
+        >
             <Canvas dpr={[1, 2.5]}>
                 <fog attach="fog" args={["#f0eff1", 5, 150]} />
                 <Suspense fallback={null}>
                     <ambientLight intensity={5} />
-                    {/* <Environment files="/env/cyclorama_hard_light_1k.hdr" /> */}
                     <Camera_Controller />
                     <Main_Model />
                 </Suspense>
             </Canvas>
-        </div>
+        </m.div>
     )
 }

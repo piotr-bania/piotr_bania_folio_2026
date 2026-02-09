@@ -2,14 +2,18 @@
 
 import { motion as m } from "motion/react"
 import { paragraph_variant } from "@/animations/Text_Variants"
+import { useIntro } from "@/providers/Intro_Provider"
 
 const Paragraph = ({ text, className }) => {
+    const { introState, canvasReady } = useIntro()
+    const isTextReady = introState === "done" && canvasReady
+
     if (!text) return null
 
     return (
         <m.p
             initial="hidden"
-            animate="visible"
+            animate={isTextReady ? "visible" : "hidden"}
             variants={paragraph_variant}
             className={className}
         >

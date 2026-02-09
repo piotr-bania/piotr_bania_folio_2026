@@ -1,6 +1,7 @@
 "use client"
 
 import { motion as m } from "motion/react"
+import { useIntro } from "@/providers/Intro_Provider"
 import {
     heading_1_variant,
     heading_2_variant,
@@ -22,13 +23,15 @@ const variantsMap = {
 const Headings = ({ as = "h2", text, className }) => {
     const Tag = m[as] || m.h2
     const variants = variantsMap[as] || heading_2_variant
+    const { introState, canvasReady } = useIntro()
+    const isTextReady = introState === "done" && canvasReady
 
     if (!text) return null
 
     return (
         <Tag
             initial="hidden"
-            animate="visible"
+            animate={isTextReady ? "visible" : "hidden"}
             variants={variants}
             className={className}
         >

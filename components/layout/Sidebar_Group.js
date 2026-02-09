@@ -1,6 +1,7 @@
 "use client"
 
 import { motion as m } from "motion/react"
+import { useIntro } from "@/providers/Intro_Provider"
 import {
     label_variant,
     list_container_variant,
@@ -15,11 +16,14 @@ export default function Sidebar_Group({
     onLeaveItem,
     onNavigate,
 }) {
+    const { introState, canvasReady } = useIntro()
+    const isTextReady = introState === "done" && canvasReady
+
     return (
         <m.div
             variants={list_container_variant}
             initial="hidden"
-            animate="visible"
+            animate={isTextReady ? "visible" : "hidden"}
             exit="exit"
             className="flex flex-col items-end"
         >

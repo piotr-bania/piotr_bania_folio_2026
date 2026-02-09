@@ -4,6 +4,7 @@ import Link from "next/link"
 import { motion as m } from "motion/react"
 import { SIDEBAR_NAV } from "@/lib/sidebar_nav"
 import { usePathname, useRouter } from "next/navigation"
+import { useIntro } from "@/providers/Intro_Provider"
 import {
     label_variant,
     link_variant,
@@ -37,6 +38,8 @@ function getActiveSystem(pathname) {
 }
 
 export default function Sidebar_Nav({ onHoverItem, onLeaveItem }) {
+    const { introState, canvasReady } = useIntro()
+    const isTextReady = introState === "done" && canvasReady
     const pathname = usePathname()
     const router = useRouter()
     const resolvedPath = pathname || ""
@@ -57,7 +60,7 @@ export default function Sidebar_Nav({ onHoverItem, onLeaveItem }) {
                 <m.div
                     variants={list_container_variant}
                     initial="hidden"
-                    animate="visible"
+                    animate={isTextReady ? "visible" : "hidden"}
                     exit="exit"
                     className="flex flex-col items-end"
                 >
@@ -121,7 +124,7 @@ export default function Sidebar_Nav({ onHoverItem, onLeaveItem }) {
                     key={resolvedPath}
                     variants={nav_container_variant}
                     initial="hidden"
-                    animate="visible"
+                    animate={isTextReady ? "visible" : "hidden"}
                     exit="exit"
                     className="flex flex-col items-end mt-4"
                 >
