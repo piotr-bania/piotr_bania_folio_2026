@@ -11,7 +11,7 @@ export default function Corner_Sentence() {
     return (
         <div className="fixed right-[var(--space-small)] bottom-[var(--space-small)] md:right-[var(--space-medium)] md:bottom-[var(--space-medium)] lg:right-[var(--space-large)] lg:bottom-[var(--space-large)] z-50">
             <m.p
-                className="paragraph_tiny w-48 md:w-54 lg:w-60 text-right"
+                className="paragraph_tiny secondary w-48 md:w-54 lg:w-60 text-right"
                 variants={corner_sentence_variant}
                 initial="hidden"
                 animate={isTextReady ? "visible" : "hidden"}

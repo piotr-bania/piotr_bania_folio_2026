@@ -110,7 +110,7 @@ export const paragraph_variant = {
 export const corner_sentence_variant = {
     hidden: { opacity: 0, y: 4 },
     visible: {
-        opacity: 0.6,
+        opacity: 1,
         y: 0,
         transition: {
             duration: 0.55,
