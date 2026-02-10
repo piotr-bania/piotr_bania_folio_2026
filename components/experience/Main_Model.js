@@ -8,4 +8,4 @@ export default function Main_Model() {
     return <primitive object={scene} />
 }
 
-useGLTF.preload("/models/desk_scene.glb")
+useGLTF.preload("/models/folio_map.glb")

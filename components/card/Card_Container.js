@@ -7,10 +7,7 @@ export default function Card_Container({ children }) {
                 scrollbarWidth: "thin",
             }}
         >
-            <div className="inner_border">
-                <div className="inner_padding">{children}</div>
-                {/* <Card_Navigation /> */}
-            </div>
+            {children}
         </div>
     )
 }

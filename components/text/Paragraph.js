@@ -16,6 +16,7 @@ const Paragraph = ({ text, className }) => {
             animate={isTextReady ? "visible" : "hidden"}
             variants={paragraph_variant}
             className={className}
+            suppressHydrationWarning
         >
             {text}
         </m.p>

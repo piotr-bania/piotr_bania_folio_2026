@@ -34,6 +34,7 @@ const Headings = ({ as = "h2", text, className }) => {
             animate={isTextReady ? "visible" : "hidden"}
             variants={variants}
             className={className}
+            suppressHydrationWarning
         >
             {text}
         </Tag>

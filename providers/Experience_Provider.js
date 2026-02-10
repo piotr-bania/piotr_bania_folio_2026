@@ -1,7 +1,11 @@
-// app/providers.js
 "use client"
 
-import Experience_Root from "@/components/experience/Experience_Root"
+import dynamic from "next/dynamic"
+
+const Experience_Root = dynamic(
+    () => import("@/components/experience/Experience_Root"),
+    { ssr: false }
+)
 
 export default function Experience_Provider({ children }) {
     return (

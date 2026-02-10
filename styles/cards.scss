@@ -7,36 +7,51 @@
     min-width: 640px;
     max-width: 40vw;
     max-height: 75svh;
-    // glassmorphism effect
-    background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(5px);
-    border: 1px solid #4a455350;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-    padding: calc($large * 0.25);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #c7c5ca;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    padding: 0 calc($large * 0.5);
     overflow-y: auto;
-    z-index: 50;
+    z-index: 40;
 
-    // equally distributed grid of dots in the background
-    // background-image: radial-gradient(#4a455325 1px, transparent 1px);
-    // background-size: $small $small;
+    &::before,
+    &::after {
+        content: "";
+        position: sticky;
+        display: block;
+        left: 0;
+        right: 0;
+        height: calc($large * 0.5);
+        pointer-events: none;
+        z-index: 50;
+    }
 
-    .inner_border {
-        border: 1px dashed #4a455350;
-        border-radius: 6px;
-        height: 100%;
+    &::before {
+        top: 0;
+        padding-top: calc($large * 0.5);
+        background: linear-gradient(
+            to bottom,
+            $foreground 0 15%,
+            transparent 100%
+        );
+    }
 
-        .inner_padding {
-            padding: calc($small * 0.5);
-        }
+    &::after {
+        bottom: 0;
+        padding-bottom: calc($large * 0.5);
+        background: linear-gradient(
+            to top,
+            $foreground 0 15%,
+            transparent 100%
+        );
     }
 
     @media screen and (min-width: 768px) and (max-width: 1024px) {
-        left: medium;
+        left: $medium;
         bottom: $medium;
         min-width: 470px;
         max-width: 60vw;
         max-height: 65svh;
-        padding: calc($medium * 0.25);
     }
 
     @media screen and (max-width: 767px) {
@@ -44,6 +59,5 @@
         bottom: calc($small * 3.5);
         min-width: calc(100vw - $small * 3.5);
         max-height: 50svh;
-        padding: calc($small * 0.25);
     }
 }
