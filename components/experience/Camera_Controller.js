@@ -47,6 +47,11 @@ export default function Camera_Controller() {
             rotation: [deg(0), deg(15), deg(0)],
         },
 
+        "/module/bespoke-crm": {
+            position: [1, 8, 18],
+            rotation: [deg(-60), deg(-45), deg(-60)],
+        },
+
         "/contact": {
             position: [-1.1, 1.5, 3.6],
             rotation: [-deg(24), -deg(13), 0],
