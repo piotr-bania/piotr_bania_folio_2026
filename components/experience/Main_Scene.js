@@ -29,7 +29,7 @@ export default function Main_Scene() {
             <Canvas dpr={[1, 2.5]}>
                 <fog attach="fog" args={["#f0eff1", 5, 100]} />
                 <Suspense fallback={null}>
-                    <ambientLight intensity={5} />
+                    <ambientLight intensity={7} />
                     <Camera_Controller />
                     <Main_Model />
                 </Suspense>
