@@ -34,6 +34,6 @@ body:has(.resume-page) {
     .resume-print * {
         font-family: "Inter", sans-serif !important;
         font-size: 12pt;
-        line-height: 1.35;
+        line-height: 1.4;
     }
 }
