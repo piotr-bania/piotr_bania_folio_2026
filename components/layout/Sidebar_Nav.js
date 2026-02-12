@@ -1,16 +1,17 @@
 "use client"
 
-import Link from "next/link"
-import { motion as m } from "motion/react"
-import { SIDEBAR_NAV } from "@/lib/sidebar_nav"
-import { usePathname, useRouter } from "next/navigation"
-import { useIntro } from "@/providers/Intro_Provider"
 import {
     label_variant,
     link_variant,
     list_container_variant,
     nav_container_variant,
+    nav_link_variant,
 } from "@/animations/Text_Variants"
+import { motion as m } from "motion/react"
+import { SIDEBAR_NAV } from "@/lib/sidebar_nav"
+import { useIntro } from "@/providers/Intro_Provider"
+import { usePathname, useRouter } from "next/navigation"
+import Link from "next/link"
 import Sidebar_Section from "@/components/layout/Sidebar_Section"
 import Sidebar_Back_Link from "@/components/layout/Sidebar_Back_Link"
 
@@ -48,6 +49,10 @@ export default function Sidebar_Nav({ onHoverItem, onLeaveItem }) {
     const activeSystem =
         context === "module" ? getActiveSystem(resolvedPath) : null
 
+    const handleResume = () => {
+        router.push(SIDEBAR_NAV.resume.route)
+    }
+
     const globalActions = SIDEBAR_NAV.globalActions.filter((action) => {
         if (action.id === "to_systems") return Boolean(isModuleRoute)
         return action.showOn.includes(context)
@@ -64,6 +69,16 @@ export default function Sidebar_Nav({ onHoverItem, onLeaveItem }) {
                     exit="exit"
                     className="flex flex-col items-end"
                 >
+                    {/* RESUME LINK */}
+                    <m.button
+                        onClick={handleResume}
+                        variants={nav_link_variant}
+                        className="paragraph hover:opacity-80 transition text-right mb-6"
+                    >
+                        {SIDEBAR_NAV.resume.label}
+                    </m.button>
+
+                    {/* LABEL */}
                     <m.p
                         variants={label_variant}
                         className="paragraph_tiny w-32 text-right opacity-60"
@@ -71,6 +86,7 @@ export default function Sidebar_Nav({ onHoverItem, onLeaveItem }) {
                         {SIDEBAR_NAV.homepage.label}
                     </m.p>
 
+                    {/* HOME LINKS */}
                     <m.ul className="flex flex-col items-end mt-1">
                         {SIDEBAR_NAV.homepage.items
                             .filter((item) => !item.disabled)

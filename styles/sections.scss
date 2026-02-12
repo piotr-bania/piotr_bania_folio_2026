@@ -19,4 +19,9 @@ section {
         padding: $small;
         gap: $small;
     }
+
+    @media print {
+        padding: 0;
+        gap: 0;
+    }
 }
