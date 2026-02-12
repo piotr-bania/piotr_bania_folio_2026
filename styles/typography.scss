@@ -105,7 +105,7 @@ button,
     font-weight: $font_regular;
     width: fit-content;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .link {
@@ -130,14 +130,15 @@ button,
 .button {
     background-color: $foreground;
     font-family: $subheading_font;
-    border-radius: calc($small * 0.25);
-    padding: calc($small * 0.25) $small;
-    border: 1px solid $text_header;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: calc($large * 0.125) calc($large * 0.5);
+    border: 1px solid #c7c5ca;
     text-transform: capitalize;
-    letter-spacing: 1px;
-    box-shadow:
-        rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-        rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 1);
+        border-color: $secondary;
+    }
 }
 
 .paragraph_small {

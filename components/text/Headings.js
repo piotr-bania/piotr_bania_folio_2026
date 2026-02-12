@@ -20,11 +20,11 @@ const variantsMap = {
     h6: heading_6_variant,
 }
 
-const Headings = ({ as = "h2", text, className }) => {
+const Headings = ({ as = "h2", text, className, skipIntro = false }) => {
     const Tag = m[as] || m.h2
     const variants = variantsMap[as] || heading_2_variant
     const { introState, canvasReady } = useIntro()
-    const isTextReady = introState === "done" && canvasReady
+    const isTextReady = skipIntro || (introState === "done" && canvasReady)
 
     if (!text) return null
 

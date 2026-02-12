@@ -4,9 +4,9 @@ import { motion as m } from "motion/react"
 import { paragraph_variant } from "@/animations/Text_Variants"
 import { useIntro } from "@/providers/Intro_Provider"
 
-const Paragraph = ({ text, className }) => {
+const Paragraph = ({ text, className, skipIntro = false }) => {
     const { introState, canvasReady } = useIntro()
-    const isTextReady = introState === "done" && canvasReady
+    const isTextReady = skipIntro || (introState === "done" && canvasReady)
 
     if (!text) return null
 
