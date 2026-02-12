@@ -5,6 +5,21 @@ import { motion as m } from "motion/react"
 import { useIntro } from "@/providers/Intro_Provider"
 import { paragraph_variant } from "@/animations/Text_Variants"
 
+const normalizeExternalHref = (value) => {
+    const trimmed = value.trim()
+
+    if (
+        trimmed.startsWith("http://") ||
+        trimmed.startsWith("https://") ||
+        trimmed.startsWith("mailto:") ||
+        trimmed.startsWith("tel:")
+    ) {
+        return trimmed
+    }
+
+    return `https://${trimmed}`
+}
+
 const Link_Component = ({
     href,
     text,
@@ -21,6 +36,10 @@ const Link_Component = ({
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {}
 
+    const resolvedHref = external
+        ? normalizeExternalHref(href)
+        : href
+
     return (
         <m.div
             initial="hidden"
@@ -28,11 +47,10 @@ const Link_Component = ({
             variants={paragraph_variant}
             className={className}
             suppressHydrationWarning
-            {...linkProps}
         >
-            <Link href={href} {...linkProps}>
-                {text}{" "}
-            </Link>{" "}
+            <Link href={resolvedHref} {...linkProps}>
+                {text}
+            </Link>
         </m.div>
     )
 }
