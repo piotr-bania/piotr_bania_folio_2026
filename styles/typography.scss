@@ -97,12 +97,20 @@ p {
 }
 
 a,
-button {
+button,
+.link {
     color: $text_paragraph;
     font-size: $paragraph;
+    font-family: $paragraph_font;
+    font-weight: $font_regular;
     width: fit-content;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+}
+
+.link {
+    cursor: default;
+    text-decoration: line-through;
 }
 
 a {

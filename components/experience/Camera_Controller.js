@@ -34,7 +34,17 @@ export default function Camera_Controller() {
 
         "/module/ezinvoices": {
             position: [-13, 7, -3],
-            rotation: [-deg(35), deg(25), deg(25)],
+            rotation: [deg(-35), deg(25), deg(25)],
+        },
+
+        "/module/audit-ready": {
+            position: [20, 7, 14],
+            rotation: [deg(-35), deg(35), deg(25)],
+        },
+
+        "/module/bespoke-crm": {
+            position: [1, 8, 18],
+            rotation: [deg(-60), deg(-45), deg(-60)],
         },
 
         "/module/tsunami": {
@@ -47,19 +57,14 @@ export default function Camera_Controller() {
             rotation: [deg(0), deg(15), deg(0)],
         },
 
-        "/module/bespoke-crm": {
-            position: [1, 8, 18],
-            rotation: [deg(-60), deg(-45), deg(-60)],
-        },
-
         "/contact": {
             position: [-1.1, 1.5, 3.6],
-            rotation: [-deg(24), -deg(13), 0],
+            rotation: [deg(-24), deg(-13), 0],
         },
 
         "/about": {
             position: [1.2, 1.45, 3.8],
-            rotation: [-deg(24), deg(15), 0],
+            rotation: [deg(-24), deg(15), 0],
         },
     }
 
