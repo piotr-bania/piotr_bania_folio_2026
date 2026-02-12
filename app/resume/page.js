@@ -59,7 +59,7 @@ export default function Resume_Page() {
                                 className="flex flex-col items-start gap-1"
                             >
                                 <Headings
-                                    as="h6"
+                                    as="h5"
                                     text={project.title}
                                     skipIntro
                                 />
@@ -91,6 +91,58 @@ export default function Resume_Page() {
                                             )
                                         )}
                                     </ul>
+                                )}
+
+                                {project.subprojects && (
+                                    <div className="flex flex-col items-start gap-1 space-y-4 pt-4">
+                                        {project.subprojects.map(
+                                            (subproject, subprojectIndex) => (
+                                                <div
+                                                    key={subprojectIndex}
+                                                    className="flex flex-col items-start gap-1 pl-6 border-l-1 border-[#4a455325] print:border-none"
+                                                >
+                                                    <Headings
+                                                        as="h6"
+                                                        text={subproject.title}
+                                                        skipIntro
+                                                    />
+
+                                                    {subproject.period && (
+                                                        <Paragraph
+                                                            text={
+                                                                subproject.period
+                                                            }
+                                                            skipIntro
+                                                        />
+                                                    )}
+
+                                                    {subproject.bullets && (
+                                                        <ul className="flex flex-col gap-1 pl-4 list-disc">
+                                                            {subproject.bullets.map(
+                                                                (
+                                                                    bullet,
+                                                                    bulletIndex
+                                                                ) => (
+                                                                    <li
+                                                                        key={
+                                                                            bulletIndex
+                                                                        }
+                                                                    >
+                                                                        <Paragraph
+                                                                            text={
+                                                                                bullet
+                                                                            }
+                                                                            skipIntro
+                                                                        />
+                                                                    </li>
+                                                                )
+                                                            )}
+                                                        </ul>
+                                                    )}
+                                                </div>
+                                            )
+                                        )}
+                                    </div>
                                 )}
                             </div>
                         ))}
