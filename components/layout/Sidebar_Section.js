@@ -11,9 +11,15 @@ export default function Sidebar_Section({
     const isModule = context === "module"
 
     const rootModules = []
+    const activeItems = group.items.filter((item) => !item.disabled)
+
+    if (group.disabled || activeItems.length === 0) {
+        return null
+    }
+
     const adaptedGroup = {
         ...group,
-        items: group.items.flatMap((item) => {
+        items: activeItems.flatMap((item) => {
             const isActiveProject = pathname.startsWith(item.route)
 
             if (!isModule) return [item]

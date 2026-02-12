@@ -1,7 +1,7 @@
 @use "./tokens" as *;
 
 .card_container {
-    position: absolute;
+    position: fixed;
     left: $large;
     bottom: calc($large * 1);
     min-width: 640px;

@@ -72,16 +72,18 @@ export default function Sidebar_Nav({ onHoverItem, onLeaveItem }) {
                     </m.p>
 
                     <m.ul className="flex flex-col items-end mt-1">
-                        {SIDEBAR_NAV.homepage.items.map((item) => (
-                            <m.li key={item.id} variants={link_variant}>
-                                <Link
-                                    href={item.route}
-                                    className="paragraph hover:opacity-80 transition text-right"
-                                >
-                                    {item.label}
-                                </Link>
-                            </m.li>
-                        ))}
+                        {SIDEBAR_NAV.homepage.items
+                            .filter((item) => !item.disabled)
+                            .map((item) => (
+                                <m.li key={item.id} variants={link_variant}>
+                                    <Link
+                                        href={item.route}
+                                        className="paragraph hover:opacity-80 transition text-right"
+                                    >
+                                        {item.label}
+                                    </Link>
+                                </m.li>
+                            ))}
                     </m.ul>
                 </m.div>
             )}
@@ -104,19 +106,21 @@ export default function Sidebar_Nav({ onHoverItem, onLeaveItem }) {
             )}
 
             {/* MODULE – FOCUSED */}
-            {context === "module" && activeSystem && (
-                <Sidebar_Section
-                    group={{
-                        ...activeSystem.group,
-                        items: [activeSystem.item],
-                    }}
-                    pathname={resolvedPath}
-                    context="module"
-                    onHoverItem={onHoverItem}
-                    onLeaveItem={onLeaveItem}
-                    onNavigate={(route) => router.push(route)}
-                />
-            )}
+            {context === "module" &&
+                activeSystem &&
+                !activeSystem.item.disabled && (
+                    <Sidebar_Section
+                        group={{
+                            ...activeSystem.group,
+                            items: [activeSystem.item],
+                        }}
+                        pathname={resolvedPath}
+                        context="module"
+                        onHoverItem={onHoverItem}
+                        onLeaveItem={onLeaveItem}
+                        onNavigate={(route) => router.push(route)}
+                    />
+                )}
 
             {/* GLOBAL NAVIGATION */}
             {globalActions.length > 0 && (
