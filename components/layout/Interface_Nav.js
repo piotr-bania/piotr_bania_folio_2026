@@ -2,7 +2,6 @@
 
 import {
     nav_container_variant,
-    nav_link_variant,
     label_variant,
 } from "@/animations/Text_Variants"
 import { motion as m } from "motion/react"
@@ -13,21 +12,15 @@ import Sidebar_Back_Link from "@/components/layout/Sidebar_Back_Link"
 function getContext(pathname) {
     if (pathname === "/map") return "map"
     if (pathname === "/systems") return "systems"
-    if (pathname.startsWith("/module")) return "module"
-    if (pathname.startsWith("/resume")) return "resume"
-    return "static"
+    return "interface"
 }
 
-export default function Resume_Nav() {
+export default function Interface_Nav() {
     const pathname = usePathname()
     const resolvedPath = pathname || ""
     const context = getContext(resolvedPath)
     const isModuleRoute = resolvedPath.startsWith("/module")
     const allowSystemsBack = isModuleRoute || context === "resume"
-
-    const handlePrint = () => {
-        window.print()
-    }
 
     const globalActions = SIDEBAR_NAV.globalActions.filter((action) => {
         if (action.id === "to_systems") return allowSystemsBack
@@ -43,14 +36,6 @@ export default function Resume_Nav() {
                 exit="exit"
                 className="flex flex-col items-end space-y-6"
             >
-                {/* PRINT BUTTON */}
-                <m.button
-                    onClick={handlePrint}
-                    variants={nav_link_variant}
-                    className="paragraph hover:opacity-80 transition text-right"
-                >
-                    Print Resume
-                </m.button>
                 {/* LABEL */}
                 <m.p
                     variants={label_variant}

@@ -32,6 +32,11 @@ export default function Camera_Controller() {
             rotation: [-deg(90), 0, 0],
         },
 
+        "/interface": {
+            position: [6, 5, -10],
+            rotation: [deg(-40), deg(40), deg(25)],
+        },
+
         "/module/ezinvoices": {
             position: [-13, 7, -3],
             rotation: [deg(-35), deg(25), deg(25)],
