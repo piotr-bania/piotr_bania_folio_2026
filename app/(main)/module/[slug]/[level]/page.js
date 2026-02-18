@@ -1,9 +1,9 @@
 import { getSystemBySlug } from "@/lib/systems"
 import Card_Body from "@/components/card/Card_Body"
+import Paragraph from "@/components/text/Paragraph"
 import Card_Header from "@/components/card/Card_Header"
 import Card_Section from "@/components/card/Card_Section"
 import Card_Container from "@/components/card/Card_Container"
-import Paragraph from "@/components/text/Paragraph"
 
 export default async function Level_Page({ params }) {
     const { slug, level } = await params
