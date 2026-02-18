@@ -1,6 +1,7 @@
 import "./globals.css"
 import "./globals.scss"
 import Lenis_Provider from "@/providers/Lenis_Provider"
+import Toast_Provider from "@/components/toast/Toast_Provider"
 
 export const metadata = {
     metadataBase: new URL("https://piotrbania.dev"),
@@ -67,7 +68,7 @@ export default function Root_Layout({ children }) {
         <html lang="en" suppressHydrationWarning>
             <body suppressHydrationWarning>
                 <Lenis_Provider />
-                {children}
+                <Toast_Provider>{children}</Toast_Provider>
             </body>
         </html>
     )

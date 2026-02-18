@@ -1,4 +1,4 @@
-import Interface_Nav from "@/components/layout/Interface_Nav"
+import Interface_Nav from "@/components/interface/Interface_Nav"
 
 export default function Interface_Layout({ children }) {
     return (
