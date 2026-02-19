@@ -7,7 +7,7 @@ import {
 } from "@/animations/Text_Variants"
 import { motion as m } from "motion/react"
 import { usePathname } from "next/navigation"
-import { SIDEBAR_NAV } from "@/lib/sidebar_nav"
+import { SIDEBAR_NAV } from "@/lib/navigation/sidebar_nav"
 import Sidebar_Back_Link from "@/components/layout/Sidebar_Back_Link"
 
 function getContext(pathname) {

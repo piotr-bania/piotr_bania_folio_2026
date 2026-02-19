@@ -8,7 +8,7 @@ import {
     nav_link_variant,
 } from "@/animations/Text_Variants"
 import { motion as m } from "motion/react"
-import { SIDEBAR_NAV } from "@/lib/sidebar_nav"
+import { SIDEBAR_NAV } from "@/lib/navigation/sidebar_nav"
 import { useIntro } from "@/providers/Intro_Provider"
 import { usePathname, useRouter } from "next/navigation"
 import Link from "next/link"

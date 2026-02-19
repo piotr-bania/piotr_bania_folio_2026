@@ -1,102 +1,53 @@
 "use client"
 
-import { useEffect } from "react"
+import { Vector3 } from "three"
+import { useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
+import { CAMERA_TARGETS } from "@/lib/experience/camera_targets"
 import { useMotionValue, animate } from "motion/react"
 import { useThree, useFrame } from "@react-three/fiber"
-
-export const deg = (d) => (d * Math.PI) / 180
+import useScreenSize from "@/hooks/useScreenSize"
 
 export default function Camera_Controller() {
     const pathname = usePathname()
     const { camera } = useThree()
+    const { screen } = useScreenSize()
 
-    // --- motion values ---
+    // --- motion values (position only) ---
     const cam_pos_x = useMotionValue(camera.position.x)
     const cam_pos_y = useMotionValue(camera.position.y)
     const cam_pos_z = useMotionValue(camera.position.z)
 
-    const cam_rot_x = useMotionValue(camera.rotation.x)
-    const cam_rot_y = useMotionValue(camera.rotation.y)
-    const cam_rot_z = useMotionValue(camera.rotation.z)
+    const lookAtTarget = useRef(new Vector3())
 
-    // --- route → camera targets ---
-    const CAMERA_TARGETS = {
-        "/map": {
-            position: [-3, 5, 8],
-            rotation: [-deg(45), -deg(15), -deg(10)],
-        },
-
-        "/systems": {
-            position: [0, 30, 1],
-            rotation: [-deg(90), 0, 0],
-        },
-
-        "/interface": {
-            position: [6, 5, -10],
-            rotation: [deg(-40), deg(40), deg(25)],
-        },
-
-        "/module/ezinvoices": {
-            position: [-13, 7, -3],
-            rotation: [deg(-35), deg(25), deg(25)],
-        },
-
-        "/module/audit-ready": {
-            position: [20, 7, 14],
-            rotation: [deg(-35), deg(35), deg(25)],
-        },
-
-        "/module/bespoke-crm": {
-            position: [1, 8, 18],
-            rotation: [deg(-60), deg(-45), deg(-60)],
-        },
-
-        "/module/tsunami": {
-            position: [-15, 3, 20],
-            rotation: [deg(0), deg(60), deg(0)],
-        },
-
-        "/module/yama-momo": {
-            position: [-11, 3, 18],
-            rotation: [deg(0), deg(15), deg(0)],
-        },
-
-        "/contact": {
-            position: [-1.1, 1.5, 3.6],
-            rotation: [deg(-24), deg(-13), 0],
-        },
-
-        "/about": {
-            position: [1.2, 1.45, 3.8],
-            rotation: [deg(-24), deg(15), 0],
-        },
-    }
-
-    // --- animate on route change ---
+    // --- animate on route or screen change ---
     useEffect(() => {
-        const target = CAMERA_TARGETS[pathname]
+        const routeTargets = CAMERA_TARGETS[pathname]
+        if (!routeTargets) return
+
+        const target = routeTargets[screen] || routeTargets
         if (!target) return
 
         const transition = {
             duration: 1.25,
-            ease: [0.22, 1, 0.36, 1], // easeOutCubic-like
+            ease: [0.22, 1, 0.36, 1],
         }
 
         animate(cam_pos_x, target.position[0], transition)
         animate(cam_pos_y, target.position[1], transition)
         animate(cam_pos_z, target.position[2], transition)
 
-        animate(cam_rot_x, target.rotation[0], transition)
-        animate(cam_rot_y, target.rotation[1], transition)
-        animate(cam_rot_z, target.rotation[2], transition)
-    }, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
+        lookAtTarget.current.set(
+            target.lookAt[0],
+            target.lookAt[1],
+            target.lookAt[2]
+        )
+    }, [pathname, screen]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    // --- apply motion values to camera every frame ---
     useFrame(() => {
         camera.position.set(cam_pos_x.get(), cam_pos_y.get(), cam_pos_z.get())
 
-        camera.rotation.set(cam_rot_x.get(), cam_rot_y.get(), cam_rot_z.get())
+        camera.lookAt(lookAtTarget.current)
     })
 
     return null
