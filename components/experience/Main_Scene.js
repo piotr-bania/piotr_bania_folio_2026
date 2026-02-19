@@ -33,11 +33,11 @@ export default function Main_Scene() {
                     <ambientLight intensity={7} />
                     <Camera_Controller />
                     <Main_Model />
-                    <Debug_Grid
+                    {/* <Debug_Grid
                         halfSize={30}
                         majorStep={5}
                         minorDivisions={5}
-                    />
+                    /> */}
                 </Suspense>
             </Canvas>
         </m.div>
