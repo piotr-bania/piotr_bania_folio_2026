@@ -5,8 +5,9 @@ import { Canvas } from "@react-three/fiber"
 import { Suspense, useEffect } from "react"
 import { useIntro } from "@/providers/Intro_Provider"
 import { canvasVariants } from "@/animations/Canvas_Variant"
-import Camera_Controller from "@/components/experience/Camera_Controller"
 import Main_Model from "@/components/experience/Main_Model"
+import Debug_Grid from "@/components/experience/Debug_Grid"
+import Camera_Controller from "@/components/experience/Camera_Controller"
 
 export default function Main_Scene() {
     const { introState, setCanvasReady } = useIntro()
@@ -32,6 +33,11 @@ export default function Main_Scene() {
                     <ambientLight intensity={7} />
                     <Camera_Controller />
                     <Main_Model />
+                    {/* <Debug_Grid
+                        halfSize={30}
+                        majorStep={5}
+                        minorDivisions={5}
+                    /> */}
                 </Suspense>
             </Canvas>
         </m.div>
