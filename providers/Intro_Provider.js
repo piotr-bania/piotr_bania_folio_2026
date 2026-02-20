@@ -19,12 +19,12 @@ const IntroContext = createContext({
 export const useIntro = () => useContext(IntroContext)
 
 export default function Intro_Provider({ children }) {
-    // const [introState, setIntroState] = useState("idle")
-    // const [canvasReady, setCanvasReady] = useState(false)
+    const [introState, setIntroState] = useState("idle")
+    const [canvasReady, setCanvasReady] = useState(false)
 
     // temporarily disable intro so camera positioning is immediate
-    const [introState, setIntroState] = useState("done")
-    const [canvasReady, setCanvasReady] = useState(true)
+    // const [introState, setIntroState] = useState("done")
+    // const [canvasReady, setCanvasReady] = useState(true)
 
     const startIntro = useCallback(() => {
         setIntroState((current) => (current === "idle" ? "playing" : current))

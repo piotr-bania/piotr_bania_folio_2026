@@ -9,7 +9,7 @@ export default function Interface_Page() {
     const content = INTERFACE
 
     return (
-        <main className="h-[100svh]">
+        <main className="h-[100svh] interface-card">
             <Card_Container>
                 <Card_Header title={content.title} />
 
@@ -21,9 +21,7 @@ export default function Interface_Page() {
                         />
                     )}
 
-                    <div className="mt-6 flex flex-col gap-4">
-                        <Interface_Form fields={content.form.fields} />
-                    </div>
+                    <Interface_Form fields={content.form.fields} />
                 </Card_Body>
             </Card_Container>
         </main>

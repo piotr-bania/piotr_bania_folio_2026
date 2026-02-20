@@ -28,9 +28,9 @@ export default function Main_Scene() {
             }}
         >
             <Canvas dpr={[1, 2.5]}>
-                <fog attach="fog" args={["#f0eff1", 5, 100]} />
+                <fog attach="fog" args={["#f0eff1", 5, 150]} />
                 <Suspense fallback={null}>
-                    <ambientLight intensity={7} />
+                    <ambientLight intensity={5} />
                     <Camera_Controller />
                     <Main_Model />
                     {/* <Debug_Grid

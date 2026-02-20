@@ -37,3 +37,21 @@ body:has(.resume-page) {
         line-height: 1.4;
     }
 }
+
+/* Default scrollbar */
+::-webkit-scrollbar {
+    width: 4px;
+    background: #6526d125;
+}
+
+/* Thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+    background: #6526d1;
+    border-radius: 6px;
+    transition: background 0.3s ease-in-out;
+}
+
+/* Thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #d02670;
+}

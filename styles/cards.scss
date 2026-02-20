@@ -7,12 +7,16 @@
     min-width: 640px;
     max-width: 40vw;
     max-height: 75svh;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.75);
     border: 1px solid #c7c5ca;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
     padding: 0 calc($large * 0.5);
     overflow-y: auto;
     z-index: 40;
+
+    .interface-card & {
+        max-height: 75svh;
+    }
 
     &::before,
     &::after {
