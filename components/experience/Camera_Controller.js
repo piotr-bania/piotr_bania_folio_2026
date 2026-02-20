@@ -13,24 +13,21 @@ export default function Camera_Controller() {
     const { camera } = useThree()
     const { screen } = useScreenSize()
 
-    // --- motion values (position only) ---
     const cam_pos_x = useMotionValue(camera.position.x)
     const cam_pos_y = useMotionValue(camera.position.y)
     const cam_pos_z = useMotionValue(camera.position.z)
 
-    // --- motion values for lookAt ---
     const cam_look_x = useMotionValue(0)
     const cam_look_y = useMotionValue(0)
     const cam_look_z = useMotionValue(0)
 
     const lookAtTarget = useRef(new Vector3())
 
-    // --- animate on route or screen change ---
     useEffect(() => {
         const routeTargets = CAMERA_TARGETS[pathname]
         if (!routeTargets) return
 
-        const target = routeTargets[screen] || routeTargets
+        const target = routeTargets[screen]
         if (!target) return
 
         const transition = {
@@ -38,7 +35,6 @@ export default function Camera_Controller() {
             ease: [0.22, 1, 0.36, 1],
         }
 
-        // --- sync current look direction before animating ---
         const currentDir = new Vector3()
         camera.getWorldDirection(currentDir)
 
@@ -46,12 +42,10 @@ export default function Camera_Controller() {
         cam_look_y.set(camera.position.y + currentDir.y * 10)
         cam_look_z.set(camera.position.z + currentDir.z * 10)
 
-        // --- animate position ---
         animate(cam_pos_x, target.position[0], transition)
         animate(cam_pos_y, target.position[1], transition)
         animate(cam_pos_z, target.position[2], transition)
 
-        // --- animate lookAt ---
         animate(cam_look_x, target.lookAt[0], transition)
         animate(cam_look_y, target.lookAt[1], transition)
         animate(cam_look_z, target.lookAt[2], transition)

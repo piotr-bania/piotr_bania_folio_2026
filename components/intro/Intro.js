@@ -8,9 +8,9 @@ const STROKE = "#6526d1"
 const FILL = "#6526d1"
 
 // timings (machine-like)
-const DRAW_DURATION = 1
+const DRAW_DURATION = 0.75
 const FILL_DELAY = DRAW_DURATION + 0.25
-const MOVE_DELAY = FILL_DELAY + 0.75
+const MOVE_DELAY = FILL_DELAY + 0.25
 
 const MOVE_TRANSITION = {
     duration: 1,
@@ -55,7 +55,7 @@ export default function Intro() {
             initial={{ opacity: 1 }}
             animate={{ opacity: introState === "done" ? 0 : 1 }}
             transition={{
-                duration: 0.4,
+                duration: 0.5,
                 ease: "easeOut",
                 delay: introState === "done" ? 0.15 : 0,
             }}
@@ -109,7 +109,7 @@ export default function Intro() {
                         animate={{ opacity: 1 }}
                         transition={{
                             delay: FILL_DELAY,
-                            duration: 0.6,
+                            duration: 0.75,
                             ease: "easeOut",
                         }}
                         preserveAspectRatio="xMidYMid meet"
