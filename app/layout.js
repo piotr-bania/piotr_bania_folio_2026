@@ -1,5 +1,6 @@
 import "./globals.css"
 import "./globals.scss"
+import Script from "next/script"
 import Lenis_Provider from "@/providers/Lenis_Provider"
 import Toast_Provider from "@/components/toast/Toast_Provider"
 
@@ -66,6 +67,20 @@ export const metadata = {
 export default function Root_Layout({ children }) {
     return (
         <html lang="en" suppressHydrationWarning>
+            <head>
+                <Script
+                    async
+                    src="https://www.googletagmanager.com/gtag/js?id=G-NTQ7RJFVYY"
+                />
+                <Script id="google-analytics">
+                    {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'G-NTQ7RJFVYY');
+                    `}
+                </Script>
+            </head>
             <body suppressHydrationWarning>
                 <Lenis_Provider />
                 <Toast_Provider>{children}</Toast_Provider>
