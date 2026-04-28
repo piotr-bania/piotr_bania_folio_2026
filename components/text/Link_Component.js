@@ -26,6 +26,7 @@ const Link_Component = ({
     className,
     skipIntro = false,
     external = false,
+    rootCard = false,
 }) => {
     const { introState, canvasReady } = useIntro()
     const isTextReady = skipIntro || (introState === "done" && canvasReady)
@@ -36,9 +37,7 @@ const Link_Component = ({
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {}
 
-    const resolvedHref = external
-        ? normalizeExternalHref(href)
-        : href
+    const resolvedHref = external ? normalizeExternalHref(href) : href
 
     return (
         <m.div
@@ -48,7 +47,11 @@ const Link_Component = ({
             className={className}
             suppressHydrationWarning
         >
-            <Link href={resolvedHref} {...linkProps}>
+            <Link
+                href={resolvedHref}
+                {...linkProps}
+                className={rootCard ? "root_card_link" : undefined}
+            >
                 {text}
             </Link>
         </m.div>
