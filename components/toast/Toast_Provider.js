@@ -1,5 +1,6 @@
 "use client"
 
+import { generateId } from "@/lib/interface/generateId"
 import { createContext, useState, useCallback } from "react"
 import Toast_Container from "@/components/toast/Toast_Container"
 
@@ -14,7 +15,7 @@ export default function Toast_Provider({ children }) {
 
     const addToast = useCallback(
         (message, type = "default", duration = 4000) => {
-            const id = crypto.randomUUID()
+            const id = generateId()
 
             const newToast = {
                 id,

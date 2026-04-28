@@ -155,3 +155,13 @@ button,
     font-weight: $font_light;
     color: $text_paragraph;
 }
+
+.root_card_link {
+    color: var(--color-primary);
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+.root_card_link:hover {
+    color: var(--color-secondary);
+}

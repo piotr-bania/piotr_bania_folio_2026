@@ -1,5 +1,37 @@
 @use "./tokens" as *;
 
+.card {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border: 1px solid #4a455350;
+    background-color: $foreground;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    transition:
+        border-color 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out;
+
+    &:hover {
+        border-color: #4a455390;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .card_image {
+        object-fit: cover;
+        filter: grayscale(1);
+        transition:
+            transform 0.3s ease-in-out,
+            filter 0.3s ease-in-out;
+
+        &:hover {
+            transform: scale(1.1);
+            filter: grayscale(0);
+        }
+    }
+}
+
 .card_container {
     position: fixed;
     left: $large;

@@ -1,36 +1,41 @@
 "use client"
 
+import { motion as m } from "motion/react"
+import { card_image_variant } from "@/animations/Card_Variants"
 import Image from "next/image"
 
 export default function Media_Grid({ media = [] }) {
     if (!Array.isArray(media) || media.length === 0) return null
 
     const handleOpen = (item) => {
-        // 🔥 future GLSL modal hook
-        console.log("OPEN MEDIA:", item)
+        // Future GLSL modal hook
     }
 
     return (
-        <div className="flex gap-4 flex-wrap mt-4">
+        <m.div
+            initial="hidden"
+            animate="visible"
+            variants={card_image_variant}
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-4"
+        >
             {media.map((m) => {
                 if (!m?.src) return null
 
                 return (
                     <button
                         key={m.id}
-                        className="w-32 h-20 bg-neutral-200 rounded-md overflow-hidden"
+                        className="card"
                         onClick={() => handleOpen(m)}
                     >
                         <Image
                             src={m.src}
                             alt={m.alt || ""}
-                            width={320}
-                            height={200}
-                            className="w-full h-full object-cover"
+                            fill
+                            className="card_image"
                         />
                     </button>
                 )
             })}
-        </div>
+        </m.div>
     )
 }

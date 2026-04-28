@@ -1,3 +1,4 @@
+import { PiMinusDuotone } from "react-icons/pi"
 import Headings from "@/components/text/Headings"
 import Paragraph from "@/components/text/Paragraph"
 
@@ -13,13 +14,27 @@ export default function Systems_Page() {
                 <div className="col-start-1 col-end-5 md:col-start-1 md:col-end-7 lg:col-start-1 lg:col-end-8 flex flex-col gap-4">
                     <Headings
                         as="h6"
-                        text="A structured view of systems I’ve designed, shipped, and continue to operate."
+                        text="A structured view of real systems I design, ship, and operate."
                     />
+                    <Paragraph text="These are not concepts or demos. Each system is used in real environments, with real users and real data." />
                     <Paragraph
-                        text="These are production-grade platforms: SaaS products,
-                        compliance tooling, internal operations, and client
-                        websites under active maintenance. Each system exposes
-                        architecture, key decisions, and real-world evidence."
+                        text={
+                            <>
+                                You can explore:
+                                <span className="flex items-center gap-2">
+                                    <PiMinusDuotone className="primary" />
+                                    how it’s built
+                                </span>
+                                <span className="flex items-center gap-2">
+                                    <PiMinusDuotone className="primary" />
+                                    why decisions were made
+                                </span>
+                                <span className="flex items-center gap-2">
+                                    <PiMinusDuotone className="primary" />
+                                    how it performs in production
+                                </span>
+                            </>
+                        }
                     />
                 </div>
             </section>
