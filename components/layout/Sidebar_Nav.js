@@ -59,7 +59,7 @@ export default function Sidebar_Nav({ onHoverItem, onLeaveItem }) {
     })
 
     return (
-        <nav className="fixed right-[var(--space-small)] top-[var(--space-small)] md:right-[var(--space-medium)] md:top-[var(--space-medium)] lg:right-[var(--space-large)] lg:top-[var(--space-large)] z-50 space-y-6">
+        <nav className="fixed right-[var(--space-small)] top-[var(--space-small)] md:right-[var(--space-medium)] md:top-[var(--space-medium)] lg:right-[var(--space-large)] lg:top-[var(--space-large)] z-39 space-y-6">
             {/* MAP */}
             {context === "map" && (
                 <m.div

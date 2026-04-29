@@ -1,37 +1,6 @@
 @use "./tokens" as *;
 
-.card {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    border: 1px solid #4a455350;
-    background-color: $foreground;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
-    transition:
-        border-color 0.3s ease-in-out,
-        box-shadow 0.3s ease-in-out;
-
-    &:hover {
-        border-color: #4a455390;
-        box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
-    }
-
-    .card_image {
-        object-fit: cover;
-        filter: grayscale(1);
-        transition:
-            transform 0.3s ease-in-out,
-            filter 0.3s ease-in-out;
-
-        &:hover {
-            transform: scale(1.1);
-            filter: grayscale(0);
-        }
-    }
-}
-
+// Card container styles for the fixed card on the interface
 .card_container {
     position: fixed;
     left: $large;
@@ -95,5 +64,157 @@
         bottom: calc($small * 3.5);
         min-width: calc(100vw - $small * 3.5);
         max-height: 50svh;
+    }
+}
+
+// Card media styles for images and videos
+.card {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    opacity: 0.8;
+    border: 1px solid #4a455350;
+    background-color: $foreground;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    transition:
+        opacity 0.3s ease-in-out,
+        border-color 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out;
+
+    &:hover {
+        opacity: 1;
+        border-color: #4a455390;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .card_image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        filter: grayscale(1);
+        transition:
+            transform 0.3s ease-in-out,
+            filter 0.3s ease-in-out;
+
+        &:hover {
+            transform: scale(1.1);
+            filter: grayscale(0);
+        }
+    }
+
+    .card_overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.9;
+        transition:
+            transform 0.3s ease-in-out,
+            opacity 0.3s ease-in-out;
+    }
+
+    .card_icon {
+        transition:
+            transform 0.3s ease-in-out,
+            color 0.3s ease-in-out;
+    }
+
+    &:hover {
+        .card_overlay {
+            opacity: 1;
+        }
+
+        .card_icon {
+            color: $secondary;
+            transform: scale(1.1);
+        }
+    }
+}
+
+// Media modal styles for the full-screen media viewer
+.media_modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .media_backdrop {
+        position: absolute;
+        inset: 0;
+        backdrop-filter: blur(10px);
+        background-color: rgba(0, 0, 0, 0.25);
+        padding: $small;
+    }
+
+    .media_content {
+        position: relative;
+        margin: $small auto;
+        width: calc(100% - $small * 2);
+        max-width: 1200px;
+        background: $foreground;
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+        padding: $small;
+        overflow: visible;
+        will-change: transform, opacity;
+        height: auto;
+        max-height: 95vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .media_close {
+            position: absolute;
+            top: calc($small * 0.25);
+            right: calc($small * 0.25);
+            margin: calc($small * 0.25);
+            padding: calc($small * 0.25);
+            background: transparent;
+            color: $primary;
+            border: none;
+            z-index: 10;
+            transition: color 0.3s ease-in-out;
+
+            &:hover {
+                color: $secondary;
+            }
+        }
+
+        .media_inner {
+            position: relative;
+            width: 100%;
+            height: auto;
+            max-height: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: calc($small * 2.25);
+
+            @media screen and (min-width: 768px) and (max-width: 1024px) {
+                margin-top: calc($small * 2);
+            }
+
+            @media screen and (max-width: 767px) {
+                margin-top: calc($small * 1.75);
+            }
+
+            .media_asset {
+                position: relative;
+                width: 100%;
+                height: auto;
+                max-height: 70vh;
+                object-fit: contain;
+                display: block;
+            }
+        }
     }
 }
