@@ -2,35 +2,27 @@
 
 import { PiXDuotone } from "react-icons/pi"
 import { createPortal } from "react-dom"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { AnimatePresence, motion as m } from "motion/react"
 import Image from "next/image"
 import Headings from "@/components/text/Headings"
 import Paragraph from "@/components/text/Paragraph"
 
 export default function Media_Modal({ item, onClose }) {
-    const [mounted, setMounted] = useState(false)
+    if (typeof window === "undefined") return null
 
-    useEffect(() => {
-        setMounted(true)
-    }, [])
-
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
         if (!item) return
-
-        const originalHtmlOverflow = document.documentElement.style.overflow
-        const originalBodyOverflow = document.body.style.overflow
 
         document.documentElement.style.overflow = "hidden"
         document.body.style.overflow = "hidden"
 
         return () => {
-            document.documentElement.style.overflow = originalHtmlOverflow
-            document.body.style.overflow = originalBodyOverflow
+            document.documentElement.style.overflow = ""
+            document.body.style.overflow = ""
         }
     }, [item])
-
-    if (!mounted) return null
 
     return createPortal(
         <AnimatePresence>
@@ -41,8 +33,10 @@ export default function Media_Modal({ item, onClose }) {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                 >
+                    {/* Backdrop */}
                     <div className="media_backdrop" onClick={onClose} />
 
+                    {/* Content */}
                     <m.div
                         className="media_content"
                         initial={{ opacity: 0, scale: 0.96, y: 20 }}
@@ -50,10 +44,12 @@ export default function Media_Modal({ item, onClose }) {
                         exit={{ opacity: 0, scale: 0.96, y: 20 }}
                         transition={{ duration: 0.35 }}
                     >
+                        {/* Close */}
                         <button className="media_close" onClick={onClose}>
                             <PiXDuotone className="size-6 md:size-8 lg:size-10" />
                         </button>
 
+                        {/* Media */}
                         <div className="media_inner my-4 flex flex-col items-center">
                             {item.type === "image" && (
                                 <Image
@@ -78,6 +74,7 @@ export default function Media_Modal({ item, onClose }) {
                             )}
                         </div>
 
+                        {/* Text */}
                         <div className="flex flex-col items-center text-center">
                             {item.label && (
                                 <Headings
