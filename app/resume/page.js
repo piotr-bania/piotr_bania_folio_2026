@@ -16,18 +16,18 @@ export default function Resume_Page() {
     return (
         <main className="resume-print resume-page">
             <section>
-                <div className="col-span-12 flex flex-col items-start gap-8">
+                <div className="col-span-12 flex flex-col items-start gap-9">
                     {/* Header */}
-                    <div className="flex flex-col items-start gap-1">
+                    <div className="flex flex-col items-start gap-2">
                         <Headings as="h1" text={header.name} skipIntro />
                         <Headings as="h6" text={header.location} skipIntro />
                     </div>
 
-                    <div className="flex flex-col items-start gap-1">
+                    <div className="flex flex-col items-start gap-2">
                         {header.contacts.map((contact, index) => (
                             <div
                                 key={index}
-                                className="flex flex-wrap items-center gap-1"
+                                className="flex flex-wrap items-center gap-2"
                             >
                                 <Paragraph
                                     text={`${contact.label}:`}
@@ -44,19 +44,19 @@ export default function Resume_Page() {
                     </div>
 
                     {/* Professional Summary */}
-                    <div className="flex flex-col items-start gap-1">
+                    <div className="flex flex-col items-start gap-2">
                         <Headings as="h4" text={summary.title} skipIntro />
                         <Paragraph text={summary.content} skipIntro />
                     </div>
 
                     {/* Professional Experience */}
-                    <div className="flex flex-col items-start gap-1 space-y-4">
+                    <div className="flex flex-col items-start gap-1 space-y-6">
                         <Headings as="h4" text={experience.title} skipIntro />
 
                         {experience.projects.map((project, projectIndex) => (
                             <div
                                 key={projectIndex}
-                                className="flex flex-col items-start gap-1"
+                                className="flex flex-col items-start gap-2"
                             >
                                 <Headings
                                     as="h5"
@@ -79,7 +79,7 @@ export default function Resume_Page() {
                                 )}
 
                                 {project.bullets && (
-                                    <ul className="flex flex-col gap-1 pl-4 list-disc">
+                                    <ul className="flex flex-col gap-1 pl-6 list-disc">
                                         {project.bullets.map(
                                             (bullet, bulletIndex) => (
                                                 <li key={bulletIndex}>
@@ -94,7 +94,7 @@ export default function Resume_Page() {
                                 )}
 
                                 {project.subprojects && (
-                                    <div className="flex flex-col items-start gap-1 space-y-4 pt-4">
+                                    <div className="flex flex-col items-start gap-1 space-y-6 pt-6">
                                         {project.subprojects.map(
                                             (subproject, subprojectIndex) => (
                                                 <div
@@ -117,7 +117,7 @@ export default function Resume_Page() {
                                                     )}
 
                                                     {subproject.bullets && (
-                                                        <ul className="flex flex-col gap-1 pl-4 list-disc">
+                                                        <ul className="flex flex-col gap-1 pl-6 list-disc">
                                                             {subproject.bullets.map(
                                                                 (
                                                                     bullet,
@@ -149,13 +149,13 @@ export default function Resume_Page() {
                     </div>
 
                     {/* Skills */}
-                    <div className="flex flex-col items-start gap-2 space-y-4">
+                    <div className="flex flex-col items-start gap-2 space-y-6">
                         <Headings as="h4" text={skills.title} skipIntro />
 
                         {skills.categories.map((category, index) => (
                             <div
                                 key={index}
-                                className="flex flex-col items-start gap-1"
+                                className="flex flex-col items-start gap-2"
                             >
                                 <Headings
                                     as="h6"
@@ -170,7 +170,7 @@ export default function Resume_Page() {
                     {/* Competencies */}
                     <div className="flex flex-col items-start gap-2">
                         <Headings as="h4" text={competencies.title} skipIntro />
-                        <ul className="flex flex-col gap-1 pl-4 list-disc">
+                        <ul className="flex flex-col gap-1 pl-6 list-disc">
                             {competencies.items.map((item, index) => (
                                 <li key={index}>
                                     <Paragraph text={item} skipIntro />
